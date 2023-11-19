@@ -1,9 +1,8 @@
 package com.snacks.lemonsqueezy.api
 
-import io.ktor.client.*
+import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
+import com.snacks.lemonsqueezy.api.internal.ktor.performRequest
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -16,35 +15,35 @@ interface LicenseApi {
     companion object
 }
 
-class LemonSqueezyLicenseApi(
-    private val httpClient: HttpClient,
+internal class LemonSqueezyLicenseApi(
+    private val requester: HttpRequester,
 ) : LicenseApi {
     private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult {
-        val httpResponseText = httpClient.post("https://api.lemonsqueezy.com/v1/licenses/activate") {
-            header(HttpHeaders.ContentType, ContentType.Application.Json)
-            contentType(ContentType.Application.Json)
-            setBody(
-                LicenseActivationRequest(
-                    licenseKey = licenseKey,
-                    instanceName = instanceName,
-                )
-            )
-        }.bodyAsText()
+        try {
+            val activationResult = requester.performRequest<String> {
+                it.post {
+                    url(path = "/v1/licenses/activate")
+                    setBody(
+                        LicenseActivationRequest(
+                            licenseKey = licenseKey,
+                            instanceName = instanceName,
+                        )
+                    )
+                }
+            }
 
-        return try {
-            json.decodeFromString<LicenseActivationSuccessResponse>(httpResponseText)
-        } catch (ex: Exception) {
-            Json.decodeFromString<LicenseActivationErrorResponse>(httpResponseText)
+            return try {
+                json.decodeFromString<LicenseActivationSuccessResponse>(activationResult)
+            } catch (ex: Exception) {
+                Json.decodeFromString<LicenseActivationErrorResponse>(activationResult)
+            }
+        } catch (e: Exception) {
+            throw e
         }
     }
 }
-
-fun LicenseApi.Companion.create(httpClient: HttpClient): LicenseApi {
-    return LemonSqueezyLicenseApi(httpClient)
-}
-
 
 sealed class LicenseActivationResult {
     @OptIn(ExperimentalContracts::class)

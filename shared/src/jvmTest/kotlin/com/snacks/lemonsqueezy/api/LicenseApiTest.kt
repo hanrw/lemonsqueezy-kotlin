@@ -1,45 +1,23 @@
 package com.snacks.lemonsqueezy.api
 
+import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
 import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito.eq
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.*
 
 class LicenseApiTest {
-    private lateinit var httpClient: HttpClient
+    private var requester: HttpRequester = mock()
 
     @Test
     fun `should return activation error when not activated`() = runBlocking {
-        httpClient = mockHttpClient(
-            """
-            {
-                "activated": false,
-                "error": "some-error",
-                "license_key": {
-                    "id": 1,
-                    "status": "active",
-                    "key": "some-license-key",
-                    "activation_limit": 1,
-                    "activation_usage": 5,
-                    "created_at": "2021-03-25 11:10:18",
-                    "expires_at": null
-                },
-                "meta": {
-                    "store_id": 1,
-                    "order_id": 2,
-                    "order_item_id": 3,
-                    "product_id": 4,
-                    "product_name": "Example Product",
-                    "variant_id": 5,
-                    "variant_name": "Default",
-                    "customer_id": 6,
-                    "customer_name": "some-customer-name",
-                    "customer_email": "some-customer-email"
-                }
-            }
-        """.trimIndent()
-        )
-
         val expectedResponse = LicenseActivationErrorResponse(
             activated = false,
             error = "some-error",
@@ -66,7 +44,7 @@ class LicenseApiTest {
             )
         )
 
-        val api = LemonSqueezyLicenseApi(httpClient)
+        val api = LemonSqueezyLicenseApi(requester)
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
 
@@ -78,8 +56,7 @@ class LicenseApiTest {
 
     @Test
     fun `should return activation success when activated`() = runBlocking {
-        httpClient = mockHttpClient(
-            """
+        val responseJson = """
             {
                 "activated": true,
                 "error": null,
@@ -111,7 +88,6 @@ class LicenseApiTest {
                 }
             }
         """.trimIndent()
-        )
 
         val expectedResponse = LicenseActivationSuccessResponse(
             activated = true,
@@ -143,14 +119,23 @@ class LicenseApiTest {
             )
         )
 
-        val api = LemonSqueezyLicenseApi(httpClient)
+        val api = LemonSqueezyLicenseApi(requester)
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
+
+        whenever(
+            requester.performRequest<String>(
+                info = argThat<TypeInfo> {
+                    this.type == String::class
+                },
+                block = any<suspend (HttpClient) -> HttpResponse>()
+            )
+        ).thenReturn(responseJson)
 
         val result = api.activeLicense(licenseKey, instanceName)
 
         assertEquals(true, result.isSuccess())
         assertEquals(expectedResponse, result)
     }
-}
 
+}

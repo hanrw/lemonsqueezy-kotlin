@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.serialization.kotlinx.json.*
@@ -28,6 +29,16 @@ fun mockHttpClient(mockResponse: String) = HttpClient(MockEngine) {
                 error("Unhandled ${request.url.encodedPath}")
             }
         }
+    }
+
+    defaultRequest {
+        url {
+            protocol = URLProtocol.HTTPS
+            host = "api.lemonsqueezy.com"
+        }
+
+        header(HttpHeaders.ContentType, ContentType.Application.Json)
+        contentType(ContentType.Application.Json)
     }
 }
 
