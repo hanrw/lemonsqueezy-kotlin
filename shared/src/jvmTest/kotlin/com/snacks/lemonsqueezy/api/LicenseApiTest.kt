@@ -2,16 +2,15 @@ package com.snacks.lemonsqueezy.api
 
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
 import io.ktor.client.*
-import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mockito.ArgumentMatchers
-import org.mockito.Mockito.eq
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.*
+import org.mockito.kotlin.any
+import org.mockito.kotlin.argThat
+import org.mockito.kotlin.whenever
 
 class LicenseApiTest {
     private var requester: HttpRequester = mock()
