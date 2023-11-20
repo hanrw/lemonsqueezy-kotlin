@@ -9,6 +9,9 @@ mockito-junit-jupiter = "5.7.0"
 mockito-kotlin = "5.1.0"
 assertj-core = "3.24.2"
 
+# plugins
+multiplatform-swiftpackage = "2.2.0"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -37,3 +40,4 @@ jvm-test = ["junit", "jupiter-api", "jupiter-engine", "mockito-junit-jupiter", "
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+multiplatform-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version.ref = "multiplatform-swiftpackage" }

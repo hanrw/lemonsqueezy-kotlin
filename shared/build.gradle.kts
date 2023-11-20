@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.multiplatform.swiftpackage)
 }
 
 kotlin {
     jvm()
     listOf(
+        macosArm64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
@@ -31,6 +33,14 @@ kotlin {
         jvmTest.dependencies {
             implementation(libs.bundles.jvm.test)
         }
+    }
+}
+
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.9")
+    targetPlatforms {
+        iOS { v("14") }
+        macOS { v("13") }
     }
 }
 
