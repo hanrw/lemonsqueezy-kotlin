@@ -17,6 +17,35 @@ class LicenseApiTest {
 
     @Test
     fun `should return activation error when not activated`() = runBlocking {
+        val responseJson = """
+            {
+                "activated": false,
+                "error": "some-error",
+                "license_key": {
+                    "id": 1,
+                    "status": "active",
+                    "key": "some-license-key",
+                    "activation_limit": 1,
+                    "activation_usage": 5,
+                    "created_at": "2021-03-25 11:10:18",
+                    "expires_at": null
+                },
+                "meta": {
+                    "store_id": 1,
+                    "order_id": 2,
+                    "order_item_id": 3,
+                    "product_id": 4,
+                    "product_name": "Example Product",
+                    "variant_id": 5,
+                    "variant_name": "Default",
+                    "customer_id": 6,
+                    "customer_name": "some-customer-name",
+                    "customer_email": "some-customer-email"
+                }
+            }
+        """.trimIndent()
+
+
         val expectedResponse = LicenseActivationErrorResponse(
             activated = false,
             error = "some-error",
@@ -46,6 +75,15 @@ class LicenseApiTest {
         val api = LemonSqueezyLicenseApi(requester)
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
+
+        whenever(
+            requester.performRequest<String>(
+                info = argThat<TypeInfo> {
+                    this.type == String::class
+                },
+                block = any<suspend (HttpClient) -> HttpResponse>()
+            )
+        ).thenReturn(responseJson)
 
         val result = api.activeLicense(licenseKey, instanceName)
 
