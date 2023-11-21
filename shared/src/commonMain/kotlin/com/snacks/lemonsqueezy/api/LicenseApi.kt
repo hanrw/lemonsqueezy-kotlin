@@ -36,6 +36,8 @@ internal class LemonSqueezyLicenseApi(
                 )
             }
 
+            println(activationResult)
+
             return try {
                 json.decodeFromString<LicenseActivationSuccessResponse>(activationResult)
             } catch (ex: Exception) {
@@ -73,14 +75,14 @@ sealed class LicenseActivationResult {
 
 @Serializable
 data class LicenseActivationRequest(
-    @SerialName("api_key")
+    @SerialName("license_key")
     val licenseKey: String,
     @SerialName("instance_name")
     val instanceName: String,
 )
 
 data class LicenseDeactivationRequest(
-    @SerialName("api_key")
+    @SerialName("license_key")
     val licenseKey: String,
     @SerialName("instance_id")
     val instanceId: String,

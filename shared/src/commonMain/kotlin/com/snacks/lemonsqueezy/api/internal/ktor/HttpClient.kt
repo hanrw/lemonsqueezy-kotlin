@@ -7,6 +7,7 @@ import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import kotlinx.serialization.json.Json
@@ -22,7 +23,7 @@ import kotlin.time.Duration.Companion.minutes
 internal fun <T : HttpClientEngineConfig> createHttpClient(
     url: String,
     token: String,
-    engine: HttpClientEngineFactory<T>
+    engine: HttpClientEngineFactory<T>,
 ): HttpClient {
     return HttpClient(engine) {
 //      enable proxy in the future
@@ -80,11 +81,13 @@ internal fun <T : HttpClientEngineConfig> createHttpClient(
         }
 
         defaultRequest {
-            /**
-             * Sets the default request URL.
-             * @param url the request URL.
-             */
-            url(url)
+            url {
+                protocol = URLProtocol.HTTPS
+                host = url
+            }
+
+            header(HttpHeaders.ContentType, ContentType.Application.Json)
+            contentType(ContentType.Application.Json)
         }
 
         /**

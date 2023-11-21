@@ -30,6 +30,10 @@ kotlin {
             implementation(libs.ktor.client.mock)
         }
 
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.cio)
+        }
+
         jvmTest.dependencies {
             implementation(libs.bundles.jvm.test)
         }
