@@ -16,6 +16,80 @@ class LicenseApiTest {
     private var requester: HttpRequester = mock()
 
     @Test
+    fun `should return deactivation success when deactivated`() = runBlocking {
+        val responseJson = """
+          {
+            "deactivated": true,
+            "error": null,
+            "license_key": {
+                "id": 1,
+                "status": "inactive",
+                "key": "some-license-key",
+                "activation_limit": 5,
+                "activation_usage": 0,
+                "created_at": "2021-03-25 11:10:18",
+                "expires_at": null
+            },
+            "meta": {
+                "store_id": 1,
+                "order_id": 2,
+                "order_item_id": 3,
+                "product_id": 4,
+                "product_name": "Example Product",
+                "variant_id": 5,
+                "variant_name": "Default",
+                "customer_id": 6,
+                "customer_name": "some-customer-name",
+                "customer_email": "some-customer-email"
+            }
+        }
+        """.trimIndent()
+
+        val expectedResponse = LicenseDeactivationResponse(
+            deactivated = true,
+            error = null,
+            licenseKey = LicenseKey(
+                id = 1,
+                status = "active",
+                key = "some-license-key",
+                activationLimit = 1,
+                activationUsage = 5,
+                createdAt = "2021-03-25 11:10:18",
+                expiresAt = null
+            ),
+            meta = Meta(
+                storeId = 1,
+                orderId = 2,
+                orderItemId = 3,
+                productId = 4,
+                productName = "Example Product",
+                variantId = 5,
+                variantName = "Default",
+                customerId = 6,
+                customerName = "some-customer-name",
+                customerEmail = "some-customer-email"
+            )
+        )
+
+        val api = LemonSqueezyLicenseApi(requester)
+        val licenseKey = "your_license_key"
+        val instanceId = "your_instance_id"
+
+        whenever(
+            requester.performRequest<LicenseDeactivationResponse>(
+                info = argThat<TypeInfo> {
+                    this.type == LicenseDeactivationResponse::class
+                },
+                block = any<suspend (HttpClient) -> HttpResponse>()
+            )
+        ).thenReturn(expectedResponse)
+
+        val result = api.deactivateLicense(licenseKey, instanceId)
+
+        assertEquals(expectedResponse, result)
+    }
+
+    @Test
     fun `should return activation error when not activated`() = runBlocking {
         val responseJson = """
             {

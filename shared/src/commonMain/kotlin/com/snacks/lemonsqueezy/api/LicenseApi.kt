@@ -12,6 +12,8 @@ import kotlin.contracts.contract
 interface LicenseApi {
     suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult
 
+    suspend fun deactivateLicense(licenseKey: String, instanceId: String): LicenseDeactivationResponse
+
     companion object
 }
 
@@ -43,6 +45,20 @@ internal class LemonSqueezyLicenseApi(
             throw e
         }
     }
+
+    override suspend fun deactivateLicense(licenseKey: String, instanceId: String): LicenseDeactivationResponse {
+        return requester.performRequest<LicenseDeactivationResponse> {
+            it.post {
+                url(path = "/v1/licenses/deactivate")
+                setBody(
+                    LicenseDeactivationRequest(
+                        licenseKey = licenseKey,
+                        instanceId = instanceId,
+                    )
+                )
+            }
+        }
+    }
 }
 
 sealed class LicenseActivationResult {
@@ -62,6 +78,20 @@ data class LicenseActivationRequest(
     val licenseKey: String,
     @SerialName("instance_name")
     val instanceName: String,
+)
+
+data class LicenseDeactivationRequest(
+    @SerialName("api_key")
+    val licenseKey: String,
+    @SerialName("instance_id")
+    val instanceId: String,
+)
+
+data class LicenseDeactivationResponse(
+    val deactivated: Boolean,
+    val error: String?,
+    val licenseKey: LicenseKey,
+    val meta: Meta,
 )
 
 @Serializable
