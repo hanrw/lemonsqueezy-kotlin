@@ -1,8 +1,7 @@
 package com.snacks.lemonsqueezy.api
 
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
-import io.ktor.client.*
-import io.ktor.client.statement.*
+import io.ktor.client.request.*
 import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -80,7 +79,7 @@ class LicenseApiTest {
                 info = argThat<TypeInfo> {
                     this.type == LicenseDeactivationResponse::class
                 },
-                block = any<suspend (HttpClient) -> HttpResponse>()
+                builder = any<HttpRequestBuilder.() -> Unit>()
             )
         ).thenReturn(expectedResponse)
 
@@ -155,7 +154,7 @@ class LicenseApiTest {
                 info = argThat<TypeInfo> {
                     this.type == String::class
                 },
-                block = any<suspend (HttpClient) -> HttpResponse>()
+                builder = any<HttpRequestBuilder.() -> Unit>()
             )
         ).thenReturn(responseJson)
 
@@ -239,7 +238,7 @@ class LicenseApiTest {
                 info = argThat<TypeInfo> {
                     this.type == String::class
                 },
-                block = any<suspend (HttpClient) -> HttpResponse>()
+                builder = any<HttpRequestBuilder.() -> Unit>()
             )
         ).thenReturn(responseJson)
 

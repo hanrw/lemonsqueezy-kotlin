@@ -3,6 +3,7 @@ package com.snacks.lemonsqueezy.api
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
 import com.snacks.lemonsqueezy.api.internal.ktor.performRequest
 import io.ktor.client.request.*
+import io.ktor.http.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -25,15 +26,14 @@ internal class LemonSqueezyLicenseApi(
     override suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult {
         try {
             val activationResult = requester.performRequest<String> {
-                it.post {
-                    url(path = "/v1/licenses/activate")
-                    setBody(
-                        LicenseActivationRequest(
-                            licenseKey = licenseKey,
-                            instanceName = instanceName,
-                        )
+                method = HttpMethod.Post
+                url(path = "/v1/licenses/activate")
+                setBody(
+                    LicenseActivationRequest(
+                        licenseKey = licenseKey,
+                        instanceName = instanceName,
                     )
-                }
+                )
             }
 
             return try {
@@ -48,15 +48,14 @@ internal class LemonSqueezyLicenseApi(
 
     override suspend fun deactivateLicense(licenseKey: String, instanceId: String): LicenseDeactivationResponse {
         return requester.performRequest<LicenseDeactivationResponse> {
-            it.post {
-                url(path = "/v1/licenses/deactivate")
-                setBody(
-                    LicenseDeactivationRequest(
-                        licenseKey = licenseKey,
-                        instanceId = instanceId,
-                    )
+            method = HttpMethod.Post
+            url(path = "/v1/licenses/deactivate")
+            setBody(
+                LicenseDeactivationRequest(
+                    licenseKey = licenseKey,
+                    instanceId = instanceId,
                 )
-            }
+            )
         }
     }
 }
