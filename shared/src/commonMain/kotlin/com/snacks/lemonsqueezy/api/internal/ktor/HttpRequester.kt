@@ -6,8 +6,9 @@ import io.ktor.util.reflect.*
 /**
  * Interface for performing HTTP requests.
  */
-internal interface HttpRequester {
+interface HttpRequester {
     suspend fun <T : Any> performRequest(info: TypeInfo, builder: HttpRequestBuilder.() -> Unit): T
+    companion object
 }
 
 /**

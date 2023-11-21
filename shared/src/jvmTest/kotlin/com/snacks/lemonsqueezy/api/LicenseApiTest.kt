@@ -16,34 +16,6 @@ class LicenseApiTest {
 
     @Test
     fun `should return deactivation success when deactivated`() = runBlocking {
-        val responseJson = """
-          {
-            "deactivated": true,
-            "error": null,
-            "license_key": {
-                "id": 1,
-                "status": "inactive",
-                "key": "some-license-key",
-                "activation_limit": 5,
-                "activation_usage": 0,
-                "created_at": "2021-03-25 11:10:18",
-                "expires_at": null
-            },
-            "meta": {
-                "store_id": 1,
-                "order_id": 2,
-                "order_item_id": 3,
-                "product_id": 4,
-                "product_name": "Example Product",
-                "variant_id": 5,
-                "variant_name": "Default",
-                "customer_id": 6,
-                "customer_name": "some-customer-name",
-                "customer_email": "some-customer-email"
-            }
-        }
-        """.trimIndent()
-
         val expectedResponse = LicenseDeactivationResponse(
             deactivated = true,
             error = null,

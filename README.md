@@ -8,3 +8,22 @@ This is a Kotlin Multiplatform project targeting iOS.
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+
+## Lemonsqueezy License api
+
+```kotlin
+val api = LemonSqueezyLicenseApi(
+            HttpRequester.default(
+                createHttpClient(
+                    url = "api.lemonsqueezy.com",
+                    token = "YOUR_TOKEN",
+                    engine = CIO
+                )
+            )
+        )
+
+val r = api.activeLicense("YOUR_LICENSE_KEY", "YOUR_INSTANCE_NAME")
+```
+
+

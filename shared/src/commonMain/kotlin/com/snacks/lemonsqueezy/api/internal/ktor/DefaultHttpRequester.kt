@@ -36,3 +36,7 @@ internal class DefaultHttpRequester(private val httpClient: HttpClient) : HttpRe
         else -> e
     }
 }
+
+fun HttpRequester.Companion.default(httpClient: HttpClient): HttpRequester {
+    return DefaultHttpRequester(httpClient)
+}
