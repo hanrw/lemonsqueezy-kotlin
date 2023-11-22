@@ -1,3 +1,6 @@
+[![CI](https://dl.circleci.com/status-badge/img/gh/hanrw/onegai-sensei/tree/main.svg?style=svg&circle-token=a36cda1c2ffa25bf74b960c56fd844e1d005b20d)](https://github.com/hanrw/lemonsqueezy-kotlin/workflows/CI/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/hanrw/onegai-sensei/branch/main/graph/badge.svg?token=4I0kaLhkrK)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
+
 This is a Kotlin Multiplatform project targeting iOS.
 
 * `/shared` is for the code that will be shared between all targets in the project.

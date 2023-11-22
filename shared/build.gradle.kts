@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.multiplatform.swiftpackage)
+    alias(libs.plugins.kover)
 }
 
 kotlin {

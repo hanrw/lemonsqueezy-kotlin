@@ -3,6 +3,7 @@ kotlin = "1.9.20"
 junit = "4.13.2"
 ktor = "2.3.6"
 kotlinx-serialization = "1.6.0"
+kover = "0.7.4"
 
 jupiter = "5.10.1"
 mockito-junit-jupiter = "5.7.0"
@@ -43,4 +44,9 @@ jvm-test = ["junit", "jupiter-api", "jupiter-engine", "mockito-junit-jupiter", "
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+#quality and coverage
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+
+#publishing
 multiplatform-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version.ref = "multiplatform-swiftpackage" }
