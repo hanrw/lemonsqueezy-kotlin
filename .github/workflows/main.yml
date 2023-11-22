@@ -16,7 +16,7 @@ jobs:
         java-version: 17
         cache: 'gradle'
     - name: Build with Gradle
-      run: ./gradlew clean build koverXmlReport
+      run: ./gradlew clean build koverVerify koverXmlReport
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       with:
