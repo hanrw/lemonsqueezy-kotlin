@@ -13,17 +13,8 @@ Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-mu
 ## Lemonsqueezy License api
 
 ```kotlin
-val api = LemonSqueezyLicenseApi(
-            HttpRequester.default(
-                createHttpClient(
-                    url = "api.lemonsqueezy.com",
-                    token = "YOUR_TOKEN",
-                    engine = CIO
-                )
-            )
-        )
-
-val r = api.activeLicense("YOUR_LICENSE_KEY", "YOUR_INSTANCE_NAME")
+val api = LemonSqueezyApi(token = "YOUR_TOKEN")
+val response = api.activeLicense("YOUR_LICENSE_KEY", "YOUR_INSTANCE_NAME")
 ```
 
 
