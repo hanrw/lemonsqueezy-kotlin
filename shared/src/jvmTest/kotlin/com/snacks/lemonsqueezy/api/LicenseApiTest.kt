@@ -1,6 +1,12 @@
 package com.snacks.lemonsqueezy.api
 
+import com.snacks.lemonsqueezy.api.data.Instance
+import com.snacks.lemonsqueezy.api.data.LicenseKey
+import com.snacks.lemonsqueezy.api.data.Meta
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
+import com.snacks.lemonsqueezy.api.response.LicenseActivationErrorResponse
+import com.snacks.lemonsqueezy.api.response.LicenseActivationSuccessResponse
+import com.snacks.lemonsqueezy.api.response.LicenseDeactivationResponse
 import io.ktor.client.request.*
 import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking

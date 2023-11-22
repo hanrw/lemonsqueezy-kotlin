@@ -2,13 +2,15 @@ package com.snacks.lemonsqueezy.api
 
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
 import com.snacks.lemonsqueezy.api.internal.ktor.performRequest
+import com.snacks.lemonsqueezy.api.request.LicenseActivationRequest
+import com.snacks.lemonsqueezy.api.request.LicenseDeactivationRequest
+import com.snacks.lemonsqueezy.api.response.LicenseActivationErrorResponse
+import com.snacks.lemonsqueezy.api.response.LicenseActivationResult
+import com.snacks.lemonsqueezy.api.response.LicenseActivationSuccessResponse
+import com.snacks.lemonsqueezy.api.response.LicenseDeactivationResponse
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
 
 interface LicenseApi {
     suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult
@@ -57,101 +59,3 @@ internal class LemonSqueezyLicenseApi(
         }
     }
 }
-
-sealed class LicenseActivationResult {
-    @OptIn(ExperimentalContracts::class)
-    fun isSuccess(): Boolean {
-        contract {
-            returns(true) implies (this@LicenseActivationResult is LicenseActivationSuccessResponse)
-            returns(false) implies (this@LicenseActivationResult is LicenseActivationErrorResponse)
-        }
-        return this is LicenseActivationSuccessResponse
-    }
-}
-
-@Serializable
-data class LicenseActivationRequest(
-    @SerialName("license_key")
-    val licenseKey: String,
-    @SerialName("instance_name")
-    val instanceName: String,
-)
-
-data class LicenseDeactivationRequest(
-    @SerialName("license_key")
-    val licenseKey: String,
-    @SerialName("instance_id")
-    val instanceId: String,
-)
-
-data class LicenseDeactivationResponse(
-    val deactivated: Boolean,
-    val error: String?,
-    val licenseKey: LicenseKey,
-    val meta: Meta,
-)
-
-@Serializable
-data class LicenseActivationSuccessResponse(
-    val activated: Boolean,
-    @SerialName("license_key")
-    val licenseKey: LicenseKey,
-    val instance: Instance,
-    val meta: Meta,
-) : LicenseActivationResult()
-
-@Serializable
-data class LicenseActivationErrorResponse(
-    val activated: Boolean,
-    val error: String?,
-    @SerialName("license_key")
-    val licenseKey: LicenseKey,
-    val meta: Meta,
-) : LicenseActivationResult()
-
-@Serializable
-data class LicenseKey(
-    val id: Int,
-    val status: String,
-    val key: String,
-    @SerialName("activation_limit")
-    val activationLimit: Int,
-    @SerialName("activation_usage")
-    val activationUsage: Int,
-    @SerialName("created_at")
-    val createdAt: String,
-    @SerialName("expires_at")
-    val expiresAt: String?,
-)
-
-@Serializable
-data class Instance(
-    val id: String,
-    val name: String,
-    @SerialName("created_at")
-    val createdAt: String,
-)
-
-@Serializable
-data class Meta(
-    @SerialName("store_id")
-    val storeId: Int,
-    @SerialName("order_id")
-    val orderId: Int,
-    @SerialName("order_item_id")
-    val orderItemId: Int,
-    @SerialName("product_id")
-    val productId: Int,
-    @SerialName("product_name")
-    val productName: String,
-    @SerialName("variant_id")
-    val variantId: Int,
-    @SerialName("variant_name")
-    val variantName: String,
-    @SerialName("customer_id")
-    val customerId: Int,
-    @SerialName("customer_name")
-    val customerName: String,
-    @SerialName("customer_email")
-    val customerEmail: String,
-)

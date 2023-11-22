@@ -15,6 +15,9 @@ koverReport {
             classes(
                 "**Platform*",
                 "*.LemonSqueezyApi**",
+                "com.snacks.**.request.*",
+                "com.snacks.**.response.*",
+                "com.snacks.**.data.*",
                 "com.snacks.**.internal.ktor.*",
                 "com.snacks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
                 "*.BuildConfig",
