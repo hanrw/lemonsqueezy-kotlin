@@ -1,4 +1,4 @@
-name: jvm - CI
+name: GitHub Actions - CI
 
 on: [push]
 
