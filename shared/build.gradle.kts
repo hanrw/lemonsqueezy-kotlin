@@ -41,6 +41,12 @@ kotlin {
     }
 }
 
+tasks {
+    named<Test>("jvmTest") {
+        useJUnitPlatform()
+    }
+}
+
 multiplatformSwiftPackage {
     swiftToolsVersion("5.9")
     targetPlatforms {

@@ -10,10 +10,11 @@ dependencies {
 }
 
 koverReport {
-
     filters {
         excludes {
             classes(
+                "**Platform*",
+                "*.LemonSqueezyApi**",
                 "com.snacks.**.internal.ktor.*",
                 "*.BuildConfig",
                 "*.BuildKonfig", // BuildKonfig generated

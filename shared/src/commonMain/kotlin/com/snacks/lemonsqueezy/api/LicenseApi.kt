@@ -14,8 +14,6 @@ interface LicenseApi {
     suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult
 
     suspend fun deactivateLicense(licenseKey: String, instanceId: String): LicenseDeactivationResponse
-
-    companion object
 }
 
 internal class LemonSqueezyLicenseApi(
@@ -124,19 +122,7 @@ data class LicenseKey(
     val createdAt: String,
     @SerialName("expires_at")
     val expiresAt: String?,
-) {
-    companion object {
-        fun mock() = LicenseKey(
-            id = 1,
-            status = "active",
-            key = "your_license_key",
-            activationLimit = 1,
-            activationUsage = 0,
-            createdAt = "2021-01-01T00:00:00.000Z",
-            expiresAt = null,
-        )
-    }
-}
+)
 
 @Serializable
 data class Instance(
@@ -144,15 +130,7 @@ data class Instance(
     val name: String,
     @SerialName("created_at")
     val createdAt: String,
-) {
-    companion object {
-        fun mock() = Instance(
-            id = "your_instance_id",
-            name = "your_instance_name",
-            createdAt = "2021-01-01T00:00:00.000Z",
-        )
-    }
-}
+)
 
 @Serializable
 data class Meta(
@@ -176,19 +154,4 @@ data class Meta(
     val customerName: String,
     @SerialName("customer_email")
     val customerEmail: String,
-) {
-    companion object {
-        fun mock() = Meta(
-            storeId = 1,
-            orderId = 1,
-            orderItemId = 1,
-            productId = 1,
-            productName = "your_product_name",
-            variantId = 1,
-            variantName = "your_variant_name",
-            customerId = 1,
-            customerName = "your_customer_name",
-            customerEmail = "your_customer_email",
-        )
-    }
-}
+)
