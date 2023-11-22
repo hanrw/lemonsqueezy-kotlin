@@ -36,8 +36,6 @@ internal class LemonSqueezyLicenseApi(
                 )
             }
 
-            println(activationResult)
-
             return try {
                 json.decodeFromString<LicenseActivationSuccessResponse>(activationResult)
             } catch (ex: Exception) {
