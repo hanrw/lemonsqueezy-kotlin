@@ -19,5 +19,7 @@ jobs:
       run: ./gradlew clean build koverXmlReport
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
+      with:
+        files: ${{ github.workspace }}/build/reports/kover/report.xml
       env:
        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
