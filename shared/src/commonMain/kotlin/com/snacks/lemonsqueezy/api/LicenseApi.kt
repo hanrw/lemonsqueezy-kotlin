@@ -24,25 +24,20 @@ internal class LemonSqueezyLicenseApi(
     private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult {
-        try {
-            val activationResult = requester.performRequest<String> {
-                method = HttpMethod.Post
-                url(path = "/v1/licenses/activate")
-                setBody(
-                    LicenseActivationRequest(
-                        licenseKey = licenseKey,
-                        instanceName = instanceName,
-                    )
+        val activationResult = requester.performRequest<String> {
+            method = HttpMethod.Post
+            url(path = "/v1/licenses/activate")
+            setBody(
+                LicenseActivationRequest(
+                    licenseKey = licenseKey,
+                    instanceName = instanceName,
                 )
-            }
-
-            return try {
-                json.decodeFromString<LicenseActivationSuccessResponse>(activationResult)
-            } catch (ex: Exception) {
-                Json.decodeFromString<LicenseActivationErrorResponse>(activationResult)
-            }
-        } catch (e: Exception) {
-            throw e
+            )
+        }
+        return try {
+            json.decodeFromString<LicenseActivationSuccessResponse>(activationResult)
+        } catch (ex: Exception) {
+            Json.decodeFromString<LicenseActivationErrorResponse>(activationResult)
         }
     }
 
