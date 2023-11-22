@@ -1,5 +1,5 @@
-[![CI](https://dl.circleci.com/status-badge/img/gh/hanrw/onegai-sensei/tree/main.svg?style=svg&circle-token=a36cda1c2ffa25bf74b960c56fd844e1d005b20d)](https://github.com/hanrw/lemonsqueezy-kotlin/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/hanrw/onegai-sensei/branch/main/graph/badge.svg?token=4I0kaLhkrK)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
+![CI](https://github.com/hanrw/lemonsqueezy-kotlin/actions/workflows/main.yml/badge.svg)
+[![codecov](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin/graph/badge.svg?token=1dENHyfyq4)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
 
 This is a Kotlin Multiplatform project targeting iOS.
 
