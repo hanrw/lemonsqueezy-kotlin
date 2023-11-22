@@ -10,7 +10,7 @@ This is a Kotlin Multiplatform project targeting iOS.
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
 
 
-## Lemonsqueezy License api
+## Lemonsqueezy api
 
 ```kotlin
 val api = LemonSqueezyApi(token = "YOUR_TOKEN")
