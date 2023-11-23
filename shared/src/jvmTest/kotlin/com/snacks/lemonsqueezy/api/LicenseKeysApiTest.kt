@@ -21,7 +21,7 @@ import org.mockito.kotlin.argThat
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.whenever
 
-class LicenseApiTest {
+class LicenseKeysApiTest {
     private var requester: HttpRequester = mock()
 
     @Test
@@ -52,7 +52,7 @@ class LicenseApiTest {
             )
         )
 
-        val api = LemonSqueezyLicenseApi(requester)
+        val api = LemonSqueezyLicenseKeysApi(requester)
         val licenseKey = "your_license_key"
         val instanceId = "your_instance_id"
 
@@ -136,7 +136,7 @@ class LicenseApiTest {
             )
         )
 
-        val api = LemonSqueezyLicenseApi(requester)
+        val api = LemonSqueezyLicenseKeysApi(requester)
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
 
@@ -220,7 +220,7 @@ class LicenseApiTest {
             )
         )
 
-        val api = LemonSqueezyLicenseApi(requester)
+        val api = LemonSqueezyLicenseKeysApi(requester)
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
 

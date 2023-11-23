@@ -12,15 +12,15 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.serialization.json.Json
 
-interface LicenseApi {
+interface LicenseKeysApi {
     suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult
 
     suspend fun deactivateLicense(licenseKey: String, instanceId: String): LicenseDeactivationResponse
 }
 
-internal class LemonSqueezyLicenseApi(
+internal class LemonSqueezyLicenseKeysApi(
     private val requester: HttpRequester,
-) : LicenseApi {
+) : LicenseKeysApi {
     private val json = Json { ignoreUnknownKeys = true }
 
     override suspend fun activeLicense(licenseKey: String, instanceName: String): LicenseActivationResult {
