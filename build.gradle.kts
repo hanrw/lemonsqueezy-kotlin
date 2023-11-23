@@ -18,8 +18,8 @@ koverReport {
                 "com.snacks.**.request.*",
                 "com.snacks.**.response.*",
                 "com.snacks.**.data.*",
-                "com.snacks.**.internal.ktor.*",
-                "com.snacks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
+                "com.snacks.**.internal.ktor.internal.*",
+                //"com.snacks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
                 "*.BuildConfig",
                 "*.BuildKonfig", // BuildKonfig generated
                 "*.ComposableSingletons*", // Jetpack Compose generated

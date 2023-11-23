@@ -4,10 +4,13 @@ import com.snacks.lemonsqueezy.api.data.Instance
 import com.snacks.lemonsqueezy.api.data.LicenseKey
 import com.snacks.lemonsqueezy.api.data.Meta
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
+import com.snacks.lemonsqueezy.api.request.LicenseActivationRequest
+import com.snacks.lemonsqueezy.api.request.LicenseDeactivationRequest
 import com.snacks.lemonsqueezy.api.response.LicenseActivationErrorResponse
 import com.snacks.lemonsqueezy.api.response.LicenseActivationSuccessResponse
 import com.snacks.lemonsqueezy.api.response.LicenseDeactivationResponse
 import io.ktor.client.request.*
+import io.ktor.http.*
 import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -15,6 +18,7 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.any
 import org.mockito.kotlin.argThat
+import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.whenever
 
 class LicenseApiTest {
@@ -52,16 +56,25 @@ class LicenseApiTest {
         val licenseKey = "your_license_key"
         val instanceId = "your_instance_id"
 
+        val httpRequestCaptor = argumentCaptor<HttpRequestBuilder.() -> Unit>()
+
         whenever(
             requester.performRequest<LicenseDeactivationResponse>(
                 info = argThat<TypeInfo> {
                     this.type == LicenseDeactivationResponse::class
                 },
-                builder = any<HttpRequestBuilder.() -> Unit>()
+                builder = httpRequestCaptor.capture()
             )
         ).thenReturn(expectedResponse)
 
         val result = api.deactivateLicense(licenseKey, instanceId)
+
+        val httpRequestBuilder = HttpRequestBuilder()
+        httpRequestCaptor.firstValue.invoke(httpRequestBuilder)
+
+        assertEquals(httpRequestBuilder.method, HttpMethod.Post)
+        assertEquals(httpRequestBuilder.url.encodedPath, "/v1/licenses/deactivate")
+        assertEquals(httpRequestBuilder.body, LicenseDeactivationRequest(licenseKey, instanceId))
 
         assertEquals(expectedResponse, result)
     }
@@ -211,16 +224,25 @@ class LicenseApiTest {
         val licenseKey = "your_license_key"
         val instanceName = "your_instance_name"
 
+        val httpRequestCaptor = argumentCaptor<HttpRequestBuilder.() -> Unit>()
+
         whenever(
             requester.performRequest<String>(
                 info = argThat<TypeInfo> {
                     this.type == String::class
                 },
-                builder = any<HttpRequestBuilder.() -> Unit>()
+                builder = httpRequestCaptor.capture()
             )
         ).thenReturn(responseJson)
 
         val result = api.activeLicense(licenseKey, instanceName)
+
+        val httpRequestBuilder = HttpRequestBuilder()
+        httpRequestCaptor.firstValue.invoke(httpRequestBuilder)
+
+        assertEquals(httpRequestBuilder.method, HttpMethod.Post)
+        assertEquals(httpRequestBuilder.url.encodedPath, "/v1/licenses/activate")
+        assertEquals(httpRequestBuilder.body, LicenseActivationRequest(licenseKey, instanceName))
 
         assertEquals(true, result.isSuccess())
         assertEquals(expectedResponse, result)

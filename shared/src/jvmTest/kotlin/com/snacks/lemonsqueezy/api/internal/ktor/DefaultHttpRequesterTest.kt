@@ -1,6 +1,6 @@
 package com.snacks.lemonsqueezy.api.internal.ktor
 
-import com.snacks.lemonsqueezy.api.*
+import com.snacks.lemonsqueezy.api.mockHttpClient
 import io.ktor.client.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.runBlocking
@@ -88,7 +88,7 @@ class DefaultHttpRequesterTest {
 
         httpClient = mockHttpClient(mockResponse)
 
-        val requester = DefaultHttpRequester(httpClient)
+        val requester = HttpRequester.default(httpClient)
 
         val result = requester.performRequest<String> {
             url(path = "/v1/licenses/activate")

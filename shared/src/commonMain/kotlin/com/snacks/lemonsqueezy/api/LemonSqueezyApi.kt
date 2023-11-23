@@ -1,7 +1,7 @@
 package com.snacks.lemonsqueezy.api
 
 import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
-import com.snacks.lemonsqueezy.api.internal.ktor.createHttpClient
+import com.snacks.lemonsqueezy.api.internal.ktor.internal.createHttpClient
 import com.snacks.lemonsqueezy.api.internal.ktor.default
 import getPlatform
 

@@ -1,4 +1,4 @@
-package com.snacks.lemonsqueezy.api.internal.ktor
+package com.snacks.lemonsqueezy.api.internal.ktor.internal
 
 import io.ktor.client.*
 import io.ktor.client.engine.*

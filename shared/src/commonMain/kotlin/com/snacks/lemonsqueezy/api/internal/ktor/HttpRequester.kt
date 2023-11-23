@@ -8,6 +8,7 @@ import io.ktor.util.reflect.*
  */
 interface HttpRequester {
     suspend fun <T : Any> performRequest(info: TypeInfo, builder: HttpRequestBuilder.() -> Unit): T
+
     companion object
 }
 
