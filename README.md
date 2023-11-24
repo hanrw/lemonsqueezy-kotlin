@@ -16,7 +16,7 @@ Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-mu
 ## Lemonsqueezy api
 
 ```kotlin
-val api = LemonSqueezyApi(token = "YOUR_TOKEN")
+val api = LemonSqueezy(token = "YOUR_TOKEN")
 val response = api.activeLicense("YOUR_LICENSE_KEY", "YOUR_INSTANCE_NAME")
 ```
 

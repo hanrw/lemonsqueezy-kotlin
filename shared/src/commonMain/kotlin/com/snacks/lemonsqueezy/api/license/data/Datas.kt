@@ -1,4 +1,4 @@
-package com.snacks.lemonsqueezy.api.data
+package com.snacks.lemonsqueezy.api.license.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -48,18 +48,4 @@ data class Meta(
     val customerName: String,
     @SerialName("customer_email")
     val customerEmail: String,
-)
-
-data class UserAttributes(
-    val name: String,
-    val email: String,
-    val color: String,
-    @SerialName("avatar_url")
-    val avatarUrl: String,
-    @SerialName("has_custom_avatar")
-    val hasCustomAvatar: Boolean,
-    @SerialName("created_at")
-    val createdAt: String,
-    @SerialName("updated_at")
-    val updatedAt: String,
 )

@@ -14,11 +14,14 @@ koverReport {
         excludes {
             classes(
                 "**Platform*",
-                "*.LemonSqueezyApi**",
+                "*.LemonSqueezy$*",
+                "*.LemonSqueezyKt",
+                "*.LemonSqueezyApi",
                 "com.snacks.**.request.*",
                 "com.snacks.**.response.*",
                 "com.snacks.**.data.*",
                 "com.snacks.**.internal.ktor.internal.*",
+                "com.snacks.**.**.ktor.internal.*",
                 //"com.snacks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
                 "*.BuildConfig",
                 "*.BuildKonfig", // BuildKonfig generated

@@ -1,14 +1,14 @@
-package com.snacks.lemonsqueezy.api
+package com.snacks.lemonsqueezy.api.license
 
-import com.snacks.lemonsqueezy.api.data.Instance
-import com.snacks.lemonsqueezy.api.data.LicenseKey
-import com.snacks.lemonsqueezy.api.data.Meta
-import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
-import com.snacks.lemonsqueezy.api.request.LicenseActivationRequest
-import com.snacks.lemonsqueezy.api.request.LicenseDeactivationRequest
-import com.snacks.lemonsqueezy.api.response.LicenseActivationErrorResponse
-import com.snacks.lemonsqueezy.api.response.LicenseActivationSuccessResponse
-import com.snacks.lemonsqueezy.api.response.LicenseDeactivationResponse
+import com.snacks.lemonsqueezy.api.license.data.Instance
+import com.snacks.lemonsqueezy.api.license.data.LicenseKey
+import com.snacks.lemonsqueezy.api.license.data.Meta
+import com.snacks.lemonsqueezy.api.internal.network.ktor.HttpRequester
+import com.snacks.lemonsqueezy.api.license.request.LicenseActivationRequest
+import com.snacks.lemonsqueezy.api.license.request.LicenseDeactivationRequest
+import com.snacks.lemonsqueezy.api.license.response.LicenseActivationErrorResponse
+import com.snacks.lemonsqueezy.api.license.response.LicenseActivationSuccessResponse
+import com.snacks.lemonsqueezy.api.license.response.LicenseDeactivationResponse
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.util.reflect.*

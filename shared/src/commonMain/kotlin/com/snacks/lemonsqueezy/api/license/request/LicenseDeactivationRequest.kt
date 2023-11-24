@@ -1,4 +1,4 @@
-package com.snacks.lemonsqueezy.api.request
+package com.snacks.lemonsqueezy.api.license.request
 
 import kotlinx.serialization.SerialName
 

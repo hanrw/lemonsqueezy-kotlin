@@ -1,8 +1,8 @@
-package com.snacks.lemonsqueezy.api
+package com.snacks.lemonsqueezy.api.user
 
-import com.snacks.lemonsqueezy.api.internal.ktor.HttpRequester
-import com.snacks.lemonsqueezy.api.internal.ktor.performRequest
-import com.snacks.lemonsqueezy.api.response.UserResponse
+import com.snacks.lemonsqueezy.api.internal.network.ktor.HttpRequester
+import com.snacks.lemonsqueezy.api.internal.network.ktor.performRequest
+import com.snacks.lemonsqueezy.api.user.response.UserResponse
 import io.ktor.client.request.*
 import io.ktor.http.*
 
