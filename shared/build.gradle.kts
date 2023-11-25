@@ -27,7 +27,6 @@ kotlin {
         }
 
         commonTest.dependencies {
-            implementation(libs.junit)
             implementation(libs.ktor.client.mock)
         }
 
@@ -36,6 +35,7 @@ kotlin {
         }
 
         jvmTest.dependencies {
+            implementation(project.dependencies.platform(libs.junit.bom))
             implementation(libs.bundles.jvm.test)
         }
     }
@@ -46,6 +46,12 @@ multiplatformSwiftPackage {
     targetPlatforms {
         iOS { v("14") }
         macOS { v("13") }
+    }
+}
+
+tasks {
+    named<Test>("jvmTest") {
+        useJUnitPlatform()
     }
 }
 
