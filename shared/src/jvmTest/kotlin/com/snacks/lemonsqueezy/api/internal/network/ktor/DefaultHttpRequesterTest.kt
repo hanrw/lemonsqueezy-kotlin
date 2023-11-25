@@ -1,15 +1,11 @@
 package com.snacks.lemonsqueezy.api.internal.network.ktor
 
 import com.snacks.lemonsqueezy.api.mockHttpClient
-import com.snacks.lemonsqueezy.api.internal.network.ktor.DefaultHttpRequester
-import com.snacks.lemonsqueezy.api.internal.network.ktor.HttpRequester
-import com.snacks.lemonsqueezy.api.internal.network.ktor.default
-import com.snacks.lemonsqueezy.api.internal.network.ktor.performRequest
 import io.ktor.client.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.runBlocking
-import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class DefaultHttpRequesterTest {
     private lateinit var httpClient: HttpClient
