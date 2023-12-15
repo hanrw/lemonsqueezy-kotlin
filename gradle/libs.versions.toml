@@ -19,17 +19,17 @@ multiplatform-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackag
 [versions]
 
 kotlin = "2.0.0-Beta1"
-ktor = "2.3.6"
-kotlinx-serialization = "1.6.1"
-kover = "0.7.4"
+ktor = "2.3.7"
+kotlinx-serialization = "1.6.2"
+kover = "0.7.5"
 
 junit = "5.10.1"
-mockito-junit-jupiter = "5.7.0"
-mockito-kotlin = "5.1.0"
+mockito-junit-jupiter = "5.8.0"
+mockito-kotlin = "5.2.1"
 assertj-core = "3.24.2"
 
 # plugins
-multiplatform-swiftpackage = "2.2.0"
+multiplatform-swiftpackage = "2.2.1"
 
 [libraries]
 
