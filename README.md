@@ -1,5 +1,5 @@
 ![CI](https://github.com/hanrw/lemonsqueezy-kotlin/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin/graph/badge.svg?token=1dENHyfyq4)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
+[![codecov](https://codecov.io/gh/tddworks/lemonsqueezy-kotlin/graph/badge.svg?token=1dENHyfyq4)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
 
 This is a Kotlin Multiplatform project targeting iOS.
 
