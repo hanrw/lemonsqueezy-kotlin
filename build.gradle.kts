@@ -9,6 +9,14 @@ dependencies {
     kover(project(":shared"))
 }
 
+subprojects {
+    val GROUP: String by project
+    val LIBRARY_VERSION: String by project
+
+    group = GROUP
+    version = LIBRARY_VERSION
+}
+
 koverReport {
     filters {
         excludes {
