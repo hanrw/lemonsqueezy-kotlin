@@ -51,10 +51,12 @@ multiplatformSwiftPackage {
     }
 }
 
-addGithubPackagesRepository()
-
 kmmbridge {
-    mavenPublishArtifacts()
+    /**
+     * reference: https://kmmbridge.touchlab.co/docs/artifacts/MAVEN_REPO_ARTIFACTS#github-packages
+     * In kmmbridge, notice mavenPublishArtifacts() tells the plugin to push KMMBridge artifacts to a Maven repo. You then need to define a repo. Rather than do everything manually, you can just call addGithubPackagesRepository(), which will add the correct repo given parameters that are passed in from GitHub Actions.
+     */
+    mavenPublishArtifacts() // <- Publish using a Maven repo
     spm()
 //    spm {
 //        swiftToolsVersion = "5.9"
@@ -66,6 +68,8 @@ kmmbridge {
 //        }
 //    }
 }
+
+addGithubPackagesRepository() // <- Add the GitHub Packages repo
 
 tasks {
     named<Test>("jvmTest") {
