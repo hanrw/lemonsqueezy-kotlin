@@ -11,9 +11,9 @@ kotlin {
     jvm()
     listOf(
         macosArm64(),
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
+//        iosX64(),
+//        iosArm64(),
+//        iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "Shared"
@@ -51,6 +51,9 @@ multiplatformSwiftPackage {
     }
 }
 
+
+addGithubPackagesRepository() // <- Add the GitHub Packages repo
+
 kmmbridge {
     /**
      * reference: https://kmmbridge.touchlab.co/docs/artifacts/MAVEN_REPO_ARTIFACTS#github-packages
@@ -68,8 +71,6 @@ kmmbridge {
 //        }
 //    }
 }
-
-addGithubPackagesRepository() // <- Add the GitHub Packages repo
 
 tasks {
     named<Test>("jvmTest") {

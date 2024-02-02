@@ -9,12 +9,18 @@ dependencies {
     kover(project(":shared"))
 }
 
+val autoVersion = project.property(
+    if (project.hasProperty("AUTO_VERSION")) {
+        "AUTO_VERSION"
+    } else {
+        "LIBRARY_VERSION"
+    }
+) as String
+
 subprojects {
     val GROUP: String by project
-    val LIBRARY_VERSION: String by project
-
     group = GROUP
-    version = LIBRARY_VERSION
+    version = autoVersion
 }
 
 koverReport {
