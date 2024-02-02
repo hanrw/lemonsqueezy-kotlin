@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.multiplatform.swiftpackage)
     alias(libs.plugins.kover)
+    alias(libs.plugins.touchlab.kmmbridge)
+    `maven-publish`
 }
 
 kotlin {
@@ -47,6 +49,22 @@ multiplatformSwiftPackage {
         iOS { v("14") }
         macOS { v("13") }
     }
+}
+
+addGithubPackagesRepository()
+
+kmmbridge {
+    mavenPublishArtifacts()
+    spm()
+//    spm {
+//        swiftToolsVersion = "5.9"
+//        platforms {
+//            iOS { v("14") }
+//            macOS { v("13") }
+//            watchOS { v("7") }
+//            tvOS { v("14") }
+//        }
+//    }
 }
 
 tasks {

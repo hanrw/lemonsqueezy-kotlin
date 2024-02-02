@@ -16,6 +16,9 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 #publishing
 multiplatform-swiftpackage = { id = "io.github.luca992.multiplatform-swiftpackage", version.ref = "multiplatform-swiftpackage" }
 
+touchlab-kmmbridge = { id = "co.touchlab.kmmbridge", version.ref = "touchlab-kmmbridge" }
+
+
 [versions]
 
 kotlin = "2.0.0-Beta2"
@@ -30,6 +33,7 @@ assertj-core = "3.24.2"
 
 # plugins
 multiplatform-swiftpackage = "2.2.1"
+touchlab-kmmbridge = "0.5.1"
 
 [libraries]
 
