@@ -1,6 +1,5 @@
-![CI](https://github.com/hanrw/lemonsqueezy-kotlin/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/tddworks/lemonsqueezy-kotlin/graph/badge.svg?token=1dENHyfyq4)](https://codecov.io/gh/hanrw/lemonsqueezy-kotlin)
-
+![CI](https://github.com/tddworks/lemonsqueezy-kotlin/actions/workflows/main.yml/badge.svg)
+[![codecov](https://codecov.io/gh/tddworks/lemonsqueezy-kotlin/graph/badge.svg?token=1dENHyfyq4)](https://codecov.io/gh/tddworks/lemonsqueezy-kotlin)
 This is a Kotlin Multiplatform project targeting iOS.
 
 * `/shared` is for the code that will be shared between all targets in the project.
