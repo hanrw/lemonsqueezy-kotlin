@@ -31,12 +31,12 @@ koverReport {
                 "*.LemonSqueezy$*",
                 "*.LemonSqueezyKt",
                 "*.LemonSqueezyApi",
-                "com.snacks.**.request.*",
-                "com.snacks.**.response.*",
-                "com.snacks.**.data.*",
-                "com.snacks.**.internal.ktor.internal.*",
-                "com.snacks.**.**.ktor.internal.*",
-                //"com.snacks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
+                "com.tddworks.**.request.*",
+                "com.tddworks.**.response.*",
+                "com.tddworks.**.data.*",
+                "com.tddworks.**.internal.ktor.internal.*",
+                "com.tddworks.**.**.ktor.internal.*",
+                //"com.tddworks.**.*\$*$*", // Lambda functions like - LemonSqueezyLicenseApi$activeLicense$activationResult$1
                 "*.BuildConfig",
                 "*.BuildKonfig", // BuildKonfig generated
                 "*.ComposableSingletons*", // Jetpack Compose generated
@@ -54,7 +54,7 @@ koverReport {
             )
         }
         includes {
-            classes("com.snacks.*")
+            classes("com.tddworks.*")
         }
     }
 
