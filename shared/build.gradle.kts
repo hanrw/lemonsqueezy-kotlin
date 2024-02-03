@@ -14,9 +14,9 @@ kotlin {
 //        iosX64(),
 //        iosArm64(),
 //        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "Shared"
+    ).forEach { target ->
+        target.binaries.framework {
+            baseName = "Lemonsqueezy.Sdk"
             isStatic = true
         }
     }
