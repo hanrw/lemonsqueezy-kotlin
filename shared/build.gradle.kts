@@ -11,9 +11,6 @@ kotlin {
     jvm()
     listOf(
         macosArm64(),
-//        iosX64(),
-//        iosArm64(),
-//        iosSimulatorArm64()
     ).forEach { target ->
         target.binaries.framework {
             baseName = "Lemonsqueezy.Sdk"
