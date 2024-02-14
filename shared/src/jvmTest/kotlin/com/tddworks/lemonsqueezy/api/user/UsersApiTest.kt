@@ -6,19 +6,19 @@ import com.tddworks.lemonsqueezy.api.user.response.UserResponse
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.util.reflect.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
 import org.mockito.kotlin.argThat
 import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 class UsersApiTest {
-    private var requester: HttpRequester = Mockito.mock()
+    private var requester: HttpRequester = mock()
 
     @Test
-    fun `should return me when success`() = runBlocking {
+    fun `should return me when success`() = runTest {
         val httpRequestCaptor = argumentCaptor<HttpRequestBuilder.() -> Unit>()
         val expectedResponse = UserResponse(
             type = "users",

@@ -1,9 +1,9 @@
 package com.tddworks.lemonsqueezy.api.license
 
+import com.tddworks.lemonsqueezy.api.internal.network.ktor.HttpRequester
 import com.tddworks.lemonsqueezy.api.license.data.Instance
 import com.tddworks.lemonsqueezy.api.license.data.LicenseKey
 import com.tddworks.lemonsqueezy.api.license.data.Meta
-import com.tddworks.lemonsqueezy.api.internal.network.ktor.HttpRequester
 import com.tddworks.lemonsqueezy.api.license.request.LicenseActivationRequest
 import com.tddworks.lemonsqueezy.api.license.request.LicenseDeactivationRequest
 import com.tddworks.lemonsqueezy.api.license.response.LicenseActivationErrorResponse
@@ -12,7 +12,7 @@ import com.tddworks.lemonsqueezy.api.license.response.LicenseDeactivationRespons
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.util.reflect.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
@@ -25,7 +25,7 @@ class LicenseKeysApiTest {
     private var requester: HttpRequester = mock()
 
     @Test
-    fun `should return deactivation success when deactivated`() = runBlocking {
+    fun `should return deactivation success when deactivated`() = runTest {
         val expectedResponse = LicenseDeactivationResponse(
             deactivated = true,
             error = null,
@@ -80,7 +80,7 @@ class LicenseKeysApiTest {
     }
 
     @Test
-    fun `should return activation error when not activated`() = runBlocking {
+    fun `should return activation error when not activated`() = runTest {
         val responseJson = """
             {
                 "activated": false,
@@ -156,7 +156,7 @@ class LicenseKeysApiTest {
     }
 
     @Test
-    fun `should return activation success when activated`() = runBlocking {
+    fun `should return activation success when activated`() = runTest {
         val responseJson = """
             {
                 "activated": true,

@@ -3,7 +3,7 @@ package com.tddworks.lemonsqueezy.api.internal.network.ktor
 import com.tddworks.lemonsqueezy.api.mockHttpClient
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -11,7 +11,7 @@ class DefaultHttpRequesterTest {
     private lateinit var httpClient: HttpClient
 
     @Test
-    fun `should return activation success when activated`() = runBlocking {
+    fun `should return activation success when activated`() = runTest {
         val mockResponse = """
             {
                 "activated": true,
@@ -57,7 +57,7 @@ class DefaultHttpRequesterTest {
     }
 
     @Test
-    fun `should return activation error when not activated`() = runBlocking {
+    fun `should return activation error when not activated`() = runTest {
         val mockResponse = """
             {
                 "activated": false,

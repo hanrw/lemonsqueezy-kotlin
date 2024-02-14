@@ -22,6 +22,7 @@ kotlin {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.bundles.ktor.client)
         }
 
@@ -35,6 +36,7 @@ kotlin {
 
         jvmTest.dependencies {
             implementation(project.dependencies.platform(libs.junit.bom))
+            implementation(libs.kotlinx.coroutines.test)
             implementation(libs.bundles.jvm.test)
         }
     }
